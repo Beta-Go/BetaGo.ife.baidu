@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务7-新世界</title>
+    </head>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            min-width: 1280px;
+            font-size: 14px;
+            font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif;
+            color: #999;
+            letter-spacing: 0.1rem;
+        }
+        .nav {
+            height: 60px;
+        }
+        .nav .logo {
+            font-size: 1.3rem;
+            margin-left: 50px;
+        }
+        .nav .logo::after {
+            content: '新世界';   
+            position: relative;
+            top: -6px;
+            padding-left: 10px;
+            color: #333;
+        }
+        .nav img {
+            width: 30px;
+            height: 30px;
+            padding-top: 15px;
+        }
+        .nav .list {
+            display: inline-block;
+            float: right;
+            height: 60px;
+            line-height: 60px;
+            padding-right: 80px;
+            color: #666;
+        }
+        .nav .list span {
+            padding: 23px 25px 23px 25px;
+        }
+        .nav .list span:nth-child(1){
+            border-bottom: 3px solid red;
+            color: #ff6666;
+        }
+        .nav .list span:last-child {
+            color: #ff6666;
+        }
+        .nav {
+            clear: both;
+        }
+        .head-img {
+            background-image: url(image/head-img.jpg);
+            height: 700px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-top: 2px;
+        }
+        .head-img-back {
+            background: rgba(0,0,0,0.2);
+            height: 700px;
+            width: 100%;
+        }
+        .head-img-title {
+            color: #ffffff;
+            margin-left: 130px;
+            padding-top: 200px;
+        }
+        .head-img-title div:nth-child(1) {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .head-img-title div:nth-child(2) {
+            font-size: 1.5rem;
+            width: 350px;
+        }
+        .head-img-title div:nth-child(3) {
+            padding: 10px 100px;
+            background-color: #ff6666;
+            font-size: 2rem;
+            width: 150px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .body-list {
+            padding: 60px 0 0 0;
+            height: 250px;
+        }
+        .body-list img {
+            width: 50px;
+            height: 50px;
+            padding-bottom: 40px;
+        }
+        .body-list .list {
+            width: 25%;
+            text-align: center;
+            display: inline-block;
+            float: left;
+            margin: 0;
+        }
+        .body-list .list>div {
+            border-right: 2px solid ;
+            padding-bottom: 20px;
+        }
+        .body-list .list div div {
+            width: 180px;
+            margin: auto;
+            line-height: 18px;
+        }
+        .main .head {
+            text-align: center;
+            background-color: #eeeeee;
+            padding: 100px 40px 80px 40px;
+        }
+        .main .head img {
+            width: 80px;
+            height: 80px;
+            padding-bottom: 2rem;
+        }
+        .main .head>div {
+            font-size: 3.5rem;
+        }
+        .main .search {
+            background-image: url(image/lvyou.jpg);
+            height: 940px;
+            background-size: 100% 370px;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            background-color: #f6f6f6;
+        }
+        .main .search-back {
+            background: rgba(0,0,0,0.5);
+            height: 370px;
+            text-align: center;
+        }
+        .main .search hr {
+            width: 2rem;
+        }
+        .main .search-back>div:first-child {
+            font-size: 1.5rem;
+            padding-top: 60px;
+        }
+        .main .search .select {
+            display: table;
+            margin: 50px auto 0 auto;
+        }
+        .main .search .select div {
+            display: table-cell;
+            vertical-align: top;
+        }
+        .main .search .select ul {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            background: #eeeeee;
+            color: #666;
+            width: 230px;
+            border: 1px solid #ff6666;
+            border-top: none;
+            padding-bottom: 10px;
+        }
+        .main .search .select li {
+            padding: 5px;
+            text-align: left
+        }
+        .main .search .select  li:first-child {
+            background: #ff6666;
+            color: #ffffff;
+        }
+        .main .search .select  li:first-child:before {
+            content: '√';
+            padding: 0px 10px 0 5px;
+        }
+        .main .search .select li+li:before {
+            content: '';
+            padding-right: 25px;
+        }
+        .main .search .select input{
+            width: 190px;
+            padding: 10px 20px;
+            color: #666;
+            border: none;
+            margin-right: 15px;
+            outline: none;
+        }
+        .main .search .select .active {
+            border: 1px solid #ff6666;
+            border-bottom: none;
+        }
+        .main .search .select option{
+            background: #eeeeee;
+            outline-color: #ff6666;
+            color: #999;
+            height: 20px;
+        }
+        .main .search .select button{
+            color: #ffffff;
+            background: #ff6666;
+            width: 230px;
+            padding: 10px 20px;
+            border: none;
+        }
+        .main .search .select-click {
+            display: inline-block;
+            padding: 3px 5px;
+            background: #ff6666;
+            color: #ffffff;
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            font-size: 1.2rem;
+            position: relative;
+            left: -55px;
+            top: 2px;
+        }
+        .main .search .image {
+            display: table;
+            margin: auto;
+            color: #999;
+            height: 570px;
+            text-align: center;
+        }
+        .main .search .image-list {
+            display: table-cell;
+            vertical-align: middle;
+            padding-right: 50px;
+        }
+        .main .search .image-list .img-border{
+            border: 1px solid #ddd;
+            padding: 8px 5px;
+        }
+        .main .search .image-list img {
+            width: 200px;
+            height: 300px;
+        }
+        .main .search .image-list .title {
+            color: #333;
+            margin: 10px 0px;
+            font-size: 1.05rem;
+        }
+        .main .content {
+            padding: 100px;
+            text-align: center;
+            height: 728px;
+        }
+        .contact {
+            height: 300px;
+            background: #3c4049;
+            color: #ffffff;
+            text-align: center;
+            display: table;
+            width: 100%;
+        }
+        .contact>div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .contact .input input {
+            height: 34px;
+            width: 350px;
+            padding-left: 10px;
+            border: none;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .contanct .input {
+            height: 34px;
+            line-height: 34px;
+        }
+        .contact span {
+            padding: 8px 12px 10px 12px;
+            background: rgba(177,177,177,0.3);
+        }
+        .contact .image {
+            margin-top: 30px;
+        }
+        .copyright {
+            height: 80px;
+            background: #3c4140;
+            color: #ffffff;
+            font-size: 0.5rem;
+            line-height: 80px;
+        }
+        .copyright span:last-child {
+            float: right;
+            margin-right: 50px;
+        }
+        .copyright span:first-child {
+            margin-left: 100px;
+        }
+        .content {
+            padding: 100px 150px;
+            height: 528px;
+            text-align: center;
+        }
+        .content h2{
+            color: #000000;
+            font-weight: normal;
+            margin: 0px;
+        }
+        .content hr {
+           border-color: #ff6666;
+           width: 30px;
+           border-width: 2px
+           padding-bottom: 5px;
+           margin-bottom: 10px;
+        }
+        .content-left {
+            width: 28%;
+            text-align: justify;
+            float: left;
+            margin-right: 2%;
+        }
+        .content-right {
+            width: 65%;
+            float: left;
+            margin-left: 5%;
+        }
+        .content-right>div {
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+        }
+        .content-right>div, .content-right input{
+            height: 35px;
+            background: #eeeeee;
+            color: #555;
+        }
+        .content-right input::-webkit-input-placeholder, textarea::-webkit-placeholder {
+            color: #555;
+        }
+        .content-right input:-moz-placeholder, textarea:-moz-placeholder {
+            color: #555;
+        }
+        .content-right input {
+            width: 47%;
+            float: left;
+        }
+
+        .content-right .active {
+            margin-right: 3%;
+        }
+
+        .content-right input,.content-right textarea {
+            border: none;
+            color: #555;
+            background: #eeeeee;
+            outline: none;
+            margin-bottom: 15px;
+            padding-left: 1.5%;
+        }
+        .content-right textarea {
+             width: 98.5%;
+             resize: none;
+             padding: 0px;
+             padding-top: 10px;
+             padding-left: 1.5%;
+        }
+        .content h4 {
+            color: #555;
+            font-weight: normal;
+        }
+        .content .more {
+            font-size: 0.3rem;
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+        .content .more:before {
+            display: inline-block;
+            content: '＜';
+            -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+        h6 {
+            font-weight: normal;
+            margin: 0px;
+            font-size: ;
+        }
+        .three-rows {
+            height: 530px;
+            text-align: center;
+        }
+        .three-rows>div:nth-child(1),.three-rows>div:nth-child(2){
+            display: table;
+        }
+       .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .three-rows>div:nth-child(3) {
+            background-image: url(image/image5.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+        .three-rows>div:nth-child(3)>div {
+            background: rgba(0,0,0,0.4);
+            height: 100%;
+            width: 100%;
+        }
+        .three-rows>div:first-child .border {
+            border: 1px solid #ffffff;
+            width: 100px;
+            padding: 8px 30px;
+            margin: auto;
+        }
+        .three-rows>div:nth-child(2) .border {
+            border: 1px solid #ff6666;
+            width: 100px;
+            padding: 8px 30px;
+            margin: auto;
+            color: #ff6666;
+        }
+        .three-rows hr {
+           border-color: #ff6666;
+           width: 30px;
+           border-width: 2px
+           padding-bottom: 5px;
+           margin-bottom: 20px;
+           margin-top: 20px;
+        }
+        .three-rows>div {
+            float: left;
+        }
+        .three-rows>div:first-child {
+            background: #ff6666;
+            height: 100%;
+            color: #ffffff;
+            font-size: 1.3rem;
+        }
+        .three-rows>div:first-child hr {
+           border-color: #ffffff;
+        }
+        .three-rows>div:nth-child(2) hr{
+            border-color: #999;
+        }
+        .three-rows>div:nth-child(odd){
+            width: 33.5%;
+        }
+        .three-rows>div:nth-child(even){
+            width: 33%;
+            height: 100%;
+            color: #333;
+            font-size: 1.3rem;
+        }
+        .content-img {
+            height: 590px;
+        }
+        .content-img h6 {
+            line-height: 2.5;
+            text-align: justify;
+            padding: 0px 80px;
+            margin: 20px 0px;
+        }
+        .content-img>div {
+            display: table;
+            float: left;
+        }
+        .content-img>div:first-child {
+            background-image: url(image/image6.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            width: 66.5%;
+            color: #ffffff;
+            text-align: center;
+        }
+        .content-img>div:last-child {
+            width: 33.5%;
+            height: 100%;
+            text-align: center;
+        }
+        .content-img .border {
+            border: 1px solid #ff6666;
+            width: 100px;
+            padding: 6px 9px;
+            color: #ff6666;
+            text-align: center;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .circle {
+            height: 13px;
+            width: 13px;
+            border-radius: 50%;
+            border: 1px solid #999;
+            display: inline-block;
+            margin: 5px;
+        }
+        .content-img .circle.active {
+            background: #999;
+        }
+        .font-12{
+            font-size: 1.2rem;
+        }
+        .font21 {
+            font-size: 1.5rem;
+        }
+        .font28 {
+            font-size: 2rem;
+        }
+        .font42 {
+            font-size: 3rem;
+        }
+        .content-img .transform-border {
+            border-bottom: 1px solid #333;
+            width: 1.8rem;
+            display: inline-block;
+            -webkit-transform: rotate(-45deg);
+            top: -5px;
+            position: relative;
+        }
+        /*小三角demo*/
+        .trai-after, .trai-before {
+            position: relative;
+        }
+        .trai-after:after{
+            border: 15px solid transparent;
+            content: '';
+            position: absolute;
+            top: 50%;
+            border-left: 15px solid #fff;
+        }
+        .trai-before:before {
+            border: 15px solid transparent;
+            content: '';
+            position: absolute;
+            top: 50%;
+            border-right: 15px solid #fff;
+            left: -30px;
+        }
+    </style>
+    <body>
+        <div class="nav">
+            <span class="logo">
+                <img src="image/banshu.jpg">
+            </span>
+            <div class="list">
+                <span>首页</span>
+                <span>最新活动</span>
+                <span>项目介绍</span>
+                <span>爱心社区</span>
+                <span>关于我们</span>
+                <span>登录</span>
+            </div>
+        </div>
+        <div class="head-img">
+            <div class="head-img-back">
+                <div class="head-img-title">
+                    <div>Time of new life</div>
+                    <div>新时代，年轻的人们让我们一起体验新生活，享受生活</div>
+                    <div>开始体验</div>
+                </div>
+            </div>
+        </div>
+        <div class="body-list">
+            <div class="list">
+                <img src="image/banshu1.jpg">
+                <div>
+                  <div>
+                    打造全新世界观，让你更爱你的生活
+                  </div>
+                </div>
+            </div>
+             <div class="list">
+                <img src="image/banshu2.jpg">
+                <div>
+                  <div>
+                   丰富多彩的公益活动，发挥新世界的主人公意识
+                  </div>
+                </div>
+            </div>
+             <div class="list">
+                <img src="image/banshu3.jpg">
+                <div>
+                  <div>
+                   时尚的新理念，超前体验未知的生活
+                  </div>
+                </div>
+            </div>
+             <div class="list">
+                <img src="image/banshu4.jpg">
+                <div style="border:none">
+                  <div>
+                    完善的培养机制，培养你全新的世界观
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="head">
+                <img src="image/banshu.jpg">
+                <div>关于新世界，你不知道的还有什么？</div>
+            </div>
+            <div class="search">
+                <div class="search-back">
+                    <div>查找新世界城市活动信息</div>
+                    <hr>
+                    <div>每个城市都有不同的活动信息，请自主查询您所需要了解的城市</div>
+                    <div class="select">
+                        <div>
+                            <input placeholder="中国"><span class="select-click">&lt;</span>
+                        </div>
+                        <div>
+                            <input placeholder="省份" class="active"><span class="select-click">&lt;</span>
+                            <ul>
+                               <li>北京市</li> 
+                               <li>天津市</li> 
+                               <li>河北省</li> 
+                               <li>陕西省</li> 
+                               <li>内蒙古自治区</li> 
+                               <li>辽宁省</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <input placeholder="城市"><span class="select-click">&lt;</span>
+                        </div>
+                        <div>
+                            <button>搜&nbsp;&nbsp;&nbsp;索</button>
+                        </div>
+                    </div>
+                </div>
+                 <div class="image">
+                    <div class="image-list">
+                      <div class="img-border">
+                         <img src="image/image-1.jpg">
+                      </div>
+                      <div class="title">北京活动</div>
+                      <div>新社区大联盟</div>
+                   </div>
+                   <div class="image-list">
+                      <div style="color:#333; font-size: 1.5rem;padding-bottom:10px"><span style="letter-spacing: 2rem">上海活</span>动</div>
+                      <div style="padding-bottom: 5px">夜上海新景观探索</div>
+                      <div class="img-border">
+                         <img src="image/image-2.jpg">
+                      </div>
+                   </div>
+                   <div class="image-list">
+                      <div class="img-border">
+                         <img src="image/image-3.jpg">
+                      </div>
+                      <div class="title">深圳活动</div>
+                      <div>全新海岸线观点站</div>
+                   </div>
+                   <div class="image-list">
+                      <div class="img-border">
+                         <img src="image/image-4.jpg">
+                      </div>
+                      <div class="title">香港活动</div>
+                      <div>奢侈消费大派送</div>
+                   </div>
+            </div>
+            </div>
+        </div>
+        <div class="content-img">
+            <div>
+                <div class="table-cell">
+                    <div style="font-size: 3rem">新世界</div>
+                    <div style="font-size: 9rem">TIME</div>
+                    <div class="font-12" style="line-height:1.8">@新世界 - 北京<br/>2016.04.01</div>
+                </div>
+            </div>
+            <div class="trai-before">
+                <div class="table-cell">
+                    <div class="font-12" style="color:#333;">新世界<span class="transform-border"></span><span style="color:red">01</span></div>
+                    <h6>
+                        新世界新世界新世界新世界新世界新世界新世界新世新世界新世界
+                        新世界新世界新世界新世界新世界新世界新世界新世新世界新世界
+                        新世界新世界新世界新世界新世界新世界新世界新世新世界新世界
+                    </h6>
+                    <div class="border">
+                        更多详情
+                    </div>
+                    <span class="circle active"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                </div>
+            </div>
+        </div>
+        <div class="three-rows">
+            <div>
+                <div class="table-cell">
+                    <div>新时代</div>
+                    <div>关于爱生活的我们</div>
+                    <hr>
+                    <div class="border">
+                    查看更多
+                    </div>
+                </div>
+            </div>
+            <div class="trai-after">
+                <div class="table-cell">
+                    <div>新时代</div>
+                    <div>关于爱生活的我们</div>
+                    <hr>
+                    <div class="border">
+                    查看更多
+                    </div>
+                </div>
+            </div>
+            <div><div></div></div>
+        </div>
+        <div class="content">
+            <h2>成为我们的志愿者</h2>
+            <hr>
+            <h6 style="width:50%;margin:auto;margin-bottom:100px">新世界的大家庭需要每一个爱生活的人加入，如果你够年轻，有梦想，有激情那就不要犹豫，快来加入我们，成为改变所有人生活的人。</h6>
+            <div class="content-left">
+                <h4 style="margin-top:0px">新世界志愿者协议</h4>
+                <h6>
+                    加入新世界志愿者的人员必须遵守中华人民共和国的相关法律法规，并且本着平等的原则......
+                </h6>
+                <div class="more">
+                    more
+                </div>
+                <h4>新世界志愿者权力</h4>
+                <h6>
+                   新世界志愿者享受新世界内部所有资源共享的权力，并且享受所在四新世界活动的优先参与资格
+                </h6>
+                <div class="more">
+                    more
+                </div>
+                <h4>更多条款</h4>
+                <div class="more">
+                    more
+                </div>
+            </div>
+            <div class="content-right">
+               <input placeholder="姓名:" class="active">
+               <input placeholder="年龄:" >
+               <input placeholder="联系方式:" class="active">
+               <input placeholder="联系地址:">
+               <textarea rows="8" cols="100%">请简单描述您梦想的生活:
+               </textarea>
+               <div>
+                   提交申请
+               </div>
+            </div>
+        </div>
+        <div class="contact">
+            <div>
+                <div>
+                     <h3>联系我们</h3>
+                </div>
+                <div style="width:400px;margin:auto;font-size:0.5rem;margin-bottom: 30px">
+                    为了更好的获取我们最新的产品咨询，您可以留下您的电子邮箱快速订阅我们的产品咨询也可以通过以下方式关注我们的动态
+                </div>
+                <div class="input">
+                    <input placeholder="someone@email.com"><span>提&nbsp;&nbsp;&nbsp;交</span>
+                </div>
+                <div class="image">
+                    <img src="image/icon.png">
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <span>&copy;2016新世界</span>
+            <span>Back to top</span>
+        </div>
+    </body>
+</html>
